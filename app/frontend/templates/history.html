@@ -4,8 +4,11 @@
 
 {% block content %}
 <div class="history-page">
-    <h1>Care History</h1>
-    <p class="subtitle">Track and review past care tasks</p>
+    <div class="page-heading">
+        <span class="eyebrow">Care archive</span>
+        <h1>Care history</h1>
+        <p class="subtitle">A clear record of what happened, when, and who helped.</p>
+    </div>
 
     <div class="tabs-container">
         <a href="{{ url_for('history_page') }}?view=grid" class="tab-link {{ 'active' if view == 'grid' or not view else '' }}">Grid View</a>
@@ -82,11 +85,11 @@
             <tbody>
                 {% for entry in history_entries %}
                 <tr class="action-{{ entry.log.action }}">
-                    <td>{{ entry.log.care_day.strftime('%Y-%m-%d') if entry.log.care_day else 'Unknown' }}</td>
-                    <td>{{ entry.log.timestamp | local_time | strftime('%I:%M %p') }}</td>
-                    <td>{{ entry.pet_name }}</td>
-                    <td>{{ entry.care_item_name }}</td>
-                    <td>
+                    <td data-label="Date">{{ entry.log.care_day.strftime('%Y-%m-%d') if entry.log.care_day else 'Unknown' }}</td>
+                    <td data-label="Time">{{ entry.log.timestamp | local_time | strftime('%I:%M %p') }}</td>
+                    <td data-label="Pet">{{ entry.pet_name }}</td>
+                    <td data-label="Task"><strong>{{ entry.care_item_name }}</strong></td>
+                    <td data-label="Action">
                         <span class="action-badge {{ entry.log.action }}">
                             {% if entry.log.action == 'completed' %}
                             ✓ Completed
@@ -95,8 +98,8 @@
                             {% endif %}
                         </span>
                     </td>
-                    <td>{{ entry.log.completed_by or '—' }}</td>
-                    <td>{{ entry.log.notes or '—' }}</td>
+                    <td data-label="By">{{ entry.log.completed_by or '—' }}</td>
+                    <td data-label="Notes">{{ entry.log.notes or '—' }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

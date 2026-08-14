@@ -6,15 +6,26 @@
     <title>Login - Care-Tracker</title>
     <link rel="stylesheet" href="{{ request.scope['root_path'] }}/static/css/style.css?v=auth">
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">🐾 Care-Tracker</div>
+<body class="auth-page">
+    <header class="app-header auth-header">
+        <nav class="app-nav">
+            <div class="logo">
+                <span class="logo-mark" aria-hidden="true">🐾</span>
+                <span class="logo-copy">
+                    <span class="logo-name">Care-Tracker</span>
+                    <span class="logo-tagline">Care, coordinated.</span>
+                </span>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main class="auth-main">
         <div class="auth-container">
+            <div class="auth-intro">
+                <span class="eyebrow">Welcome home</span>
+                <h1>Care works better together.</h1>
+                <p>Sign in to see today’s routine and keep everyone in sync.</p>
+            </div>
             <!-- Tab navigation between Login and Signup -->
             <div class="auth-tabs">
                 <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Log In</button>
@@ -60,8 +71,8 @@
         </div>
     </main>
 
-    <footer>
-        <p>Care Day: {{ care_day.strftime('%A, %B %d, %Y') if care_day else 'Unknown' }} | Day resets at 4:00 AM</p>
+    <footer class="app-footer">
+        <p><span class="footer-label">Care day</span> {{ care_day.strftime('%A, %B %d, %Y') if care_day else 'Unknown' }} <span class="footer-dot">•</span> Resets at 4:00 AM</p>
     </footer>
 
     <style>

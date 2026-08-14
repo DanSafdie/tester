@@ -8,16 +8,22 @@
     {% block styles %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">🐾 Care-Tracker</div>
+    <header class="app-header">
+        <nav class="app-nav" aria-label="Primary navigation">
+            <a class="logo" href="{{ request.scope['root_path'] }}/" aria-label="Care-Tracker home">
+                <span class="logo-mark" aria-hidden="true">🐾</span>
+                <span class="logo-copy">
+                    <span class="logo-name">Care-Tracker</span>
+                    <span class="logo-tagline">Care, coordinated.</span>
+                </span>
+            </a>
             <ul class="nav-links">
-                <li><a href="{{ request.scope['root_path'] }}/" class="{% if request.url.path == '/' %}active{% endif %}">Dashboard</a></li>
-                <li><a href="{{ request.scope['root_path'] }}/history" class="{% if request.url.path == '/history' %}active{% endif %}">History</a></li>
-                <li><a href="{{ request.scope['root_path'] }}/manage" class="{% if request.url.path == '/manage' %}active{% endif %}">Manage</a></li>
+                <li><a href="{{ request.scope['root_path'] }}/" class="{% if request.url.path == '/' %}active{% endif %}"><span class="nav-icon" aria-hidden="true">⌂</span><span>Today</span></a></li>
+                <li><a href="{{ request.scope['root_path'] }}/history" class="{% if request.url.path == '/history' %}active{% endif %}"><span class="nav-icon" aria-hidden="true">◷</span><span>History</span></a></li>
+                <li><a href="{{ request.scope['root_path'] }}/manage" class="{% if request.url.path == '/manage' %}active{% endif %}"><span class="nav-icon" aria-hidden="true">☷</span><span>Manage</span></a></li>
                 <li class="nav-user">
-                    <a href="{{ request.scope['root_path'] }}/account" class="nav-user-btn {% if request.url.path == '/account' %}active{% endif %}" style="text-decoration: none;">
-                        <span class="user-icon">👤</span>
+                    <a href="{{ request.scope['root_path'] }}/account" class="nav-user-btn {% if request.url.path == '/account' %}active{% endif %}">
+                        <span class="user-icon" aria-hidden="true">●</span>
                         <span id="current-user-name">{{ current_user.name if current_user else '...' }}</span>
                     </a>
                 </li>
@@ -29,8 +35,8 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Care Day: {{ care_day.strftime('%A, %B %d, %Y') if care_day else 'Unknown' }} | Day resets at 4:00 AM</p>
+    <footer class="app-footer">
+        <p><span class="footer-label">Care day</span> {{ care_day.strftime('%A, %B %d, %Y') if care_day else 'Unknown' }} <span class="footer-dot">•</span> Resets at 4:00 AM</p>
     </footer>
 
     <!-- Pass authenticated username and root path to JS for task completion and subpath routing -->

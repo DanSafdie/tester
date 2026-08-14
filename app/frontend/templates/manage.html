@@ -4,11 +4,14 @@
 
 {% block content %}
 <div class="manage-container">
-    <h1>Manage Care Entities</h1>
-    <p class="subtitle">Add and configure the things you take care of — pets, people, plants — and what needs doing for each. Use the ↑↓ buttons to change the order they appear on the dashboard.</p>
-
-    <!-- Add New Entity Button -->
-    <button class="btn btn-primary add-entity-btn" onclick="showAddEntityForm()">+ Add Care Entity</button>
+    <div class="page-heading manage-heading">
+        <div>
+            <span class="eyebrow">Routine builder</span>
+            <h1>Manage care</h1>
+            <p class="subtitle">Organize who and what you care for, then shape a routine for each.</p>
+        </div>
+        <button class="btn btn-primary add-entity-btn" onclick="showAddEntityForm()"><span aria-hidden="true">＋</span> Add care entity</button>
+    </div>
 
     <!-- Add Entity Form (hidden by default) -->
     <div id="add-entity-form" class="card manage-card" style="display: none;">
