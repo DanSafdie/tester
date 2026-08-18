@@ -19,6 +19,9 @@ services:
       # Secure cookies are only sent by browsers over HTTPS.
       # All access goes through Caddy (HTTPS), including the kiosk tablet.
       - SECURE_COOKIES=true
+      # Home Assistant integration used by the Inovelli care-status LEDs.
+      - HASS_URL=${HASS_URL}
+      - HASS_TOKEN=${HASS_TOKEN}
     restart: unless-stopped
     networks:
       - default
@@ -29,5 +32,4 @@ services:
 networks:
   proxy:
     external: true
-
 
